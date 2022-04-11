@@ -1,6 +1,6 @@
 {
-  "name": "react-mde",
-  "version": "11.5.0",
+  "name": "@devfolioco/react-mde",
+  "version": "1.0.0",
   "description": "React Markdown Editor",
   "main": "./lib/js/index.js",
   "types": "./lib/definitions/index.d.ts",
@@ -29,10 +29,10 @@
     "text-editor",
     "markdown-editor"
   ],
-  "author": "Andre Pena",
+  "author": "Devfolio <engineering@devfolio.co>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/andrerpena/react-mde.git/issues"
+    "url": "https://github.com/devfolioco/react-mde.git/issues"
   },
   "devDependencies": {
     "@cypress/webpack-preprocessor": "^5.1.2",
