@@ -30,6 +30,9 @@
     "markdown-editor"
   ],
   "author": "Devfolio <engineering@devfolio.co>",
+  "contributors": [
+    "Andre Pena <https://github.com/andrerpena>"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/devfolioco/react-mde.git/issues"
