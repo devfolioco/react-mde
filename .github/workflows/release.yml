@@ -27,8 +27,10 @@ jobs:
       # run: echo "::set-output name=dir::$(yarn cache dir)"
 
       - name: 🧶 Get NPM cache
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         id: cache-npm # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
+        env:
+          cache-name: cache-node-modules
         with:
           path: ~/.npm
           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
@@ -39,6 +41,9 @@ jobs:
 
       - name: 📦 Install dependencies
         run: npm install --frozen-lockfile
+
+      - name: 👷 Build
+        run: npm build
 
       - name: 🚀 Publish release
         env:
