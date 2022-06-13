@@ -40,4 +40,4 @@ jobs:
       - name: 🚀 Publish release
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: npm publish --non-interactive
+        run: npm publish --tag=beta --non-interactive
