@@ -1,6 +1,6 @@
 {
   "name": "@devfolioco/react-mde",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "React Markdown Editor",
   "main": "./lib/js/index.js",
   "types": "./lib/definitions/index.d.ts",
@@ -30,6 +30,9 @@
     "markdown-editor"
   ],
   "author": "Devfolio <engineering@devfolio.co>",
+  "contributors": [
+    "Andre Pena <https://github.com/andrerpena>"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/devfolioco/react-mde.git/issues"
@@ -61,14 +64,14 @@
     "gulp-typescript": "^6.0.0-alpha.1",
     "jest": "^24.9.0",
     "merge2": "^1.2.1",
-    "node-sass": "^4.9.0",
     "normalize.css": "^8.0.0",
     "prettier": "^1.19.1",
     "pretty-quick": "^2.0.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-hot-loader": "^4.12.18",
-    "sass-loader": "^8.0.0",
+    "sass": "1.32.0",
+    "sass-loader": "10.2.1",
     "showdown": "^1.8.6",
     "static-server": "^2.2.1",
     "style-loader": "^1.0.1",
@@ -88,5 +91,6 @@
   "style": "react-mde/lib/styles/css/react-mde-all.css",
   "resolutions": {
     "@types/react": "16.9.4"
-  }
+  },
+  "dependencies": {}
 }

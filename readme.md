@@ -1,36 +1,29 @@
 > This repository is now archived. Unfortunately I do not have the time to maintain it. Sorry for the inconvenience and thanks a lot to all the people who contributed to improving react-mde.
 
-# 📝 react-mde
+# 📝 @devfolioco/react-mde
 
+<!--
 [![npm](https://img.shields.io/npm/dt/react-mde)](https://www.npmjs.com/package/react-mde)
 [![MinZipped](https://badgen.net/bundlephobia/minzip/react-mde)](https://bundlephobia.com/result?p=react-mde)
-[![twitter](https://img.shields.io/twitter/follow/andrerpena?style=social)](https://twitter.com/andrerpena)
+[![twitter](https://img.shields.io/twitter/follow/andrerpena?style=social)](https://twitter.com/andrerpena) -->
 
 A simple yet powerful and extensible **React Markdown Editor** that aims to have feature parity with the Github Markdown editor. React-mde has no 3rd party dependencies.
 
-## Demo
-
-- [Demo JSX ](https://codesandbox.io/s/react-mde-latest-5i5ov?file=/src/index.js)
-- [Demo JSX - Using ReactMarkdown instead of Showdown](https://codesandbox.io/s/react-mde-latest-forked-f9ti5?file=/src/index.js)
-- [Demo TSX ](https://codesandbox.io/s/react-typescript-i3wju?file=/src/index.tsx)
-- [Demo TSX - Customized toolbar](https://codesandbox.io/s/react-typescript-m7cbx?file=/src/index.tsx)
-- [Demo TSX - Custom command](https://codesandbox.io/s/react-typescript-icqgv?file=/src/index.tsx)
-
-
 ## Installing
 
-    npm i react-mde
+    npm i @devfolioco/react-mde
 
 ## Using
 
 React-mde is a completely controlled component.
 
 Minimal example using Showdown. [View live on CodeSandBox](https://codesandbox.io/s/react-mde-latest-bm6p3):
+
 ```jsx
 import * as React from "react";
-import ReactMde from "react-mde";
+import ReactMde from "@devfolioco/react-mde";
 import * as Showdown from "showdown";
-import "react-mde/lib/styles/css/react-mde-all.css";
+import "@devfolioco/react-mde/lib/styles/css/react-mde-all.css";
 
 const converter = new Showdown.Converter({
   tables: true,
@@ -41,7 +34,8 @@ const converter = new Showdown.Converter({
 
 export default function App() {
   const [value, setValue] = React.useState("**Hello world!!!**");
-  const [selectedTab, setSelectedTab] = React.useState<"write" | "preview">("write");
+  const [selectedTab, setSelectedTab] =
+    (React.useState < "write") | ("preview" > "write");
   return (
     <div className="container">
       <ReactMde
@@ -61,9 +55,9 @@ export default function App() {
 ## Markdown Preview
 
 React-mde is agnostic regarding how to preview Markdown. The prop `generateMarkdownPreview` should return a Promise of either a string or a `ReactElement`.
+
 - [Demo using Showdown ](https://codesandbox.io/s/react-mde-latest-5i5ov?file=/src/index.js)
 - [Demo using ReactMarkdown](https://codesandbox.io/s/react-mde-latest-forked-f9ti5?file=/src/index.js)
-
 
 ### Customizing Icons
 
@@ -74,13 +68,13 @@ given a command name.
 
 ```jsx
 <ReactMde
-    getIcon={(commandName) => <MyCustomIcon name={commandName} />}
-    onChange={this.handleValueChange}
-    // ...
+  getIcon={commandName => <MyCustomIcon name={commandName} />}
+  onChange={this.handleValueChange}
+  // ...
 />
 ```
 
-## React-mde Props
+## @devfolioco/react-mde Props
 
 The types are described below
 
@@ -88,15 +82,15 @@ The types are described below
 - **onChange: (value: string)**: Event handler for the `onChange` event.
 - **selectedTab: "write" | "preview"**: The currently selected tab.
 - **onTabChange: (tab) => void**: Function called when the selected tab changes.
-- **classes?: [Object](https://github.com/andrerpena/react-mde/blob/master/src/classes.ts)**: An object containing the following optional properties: *reactMde*, *toolbar*, *preview*, *textArea* and *suggestionsDropdown*.
-This allows for passing class names to each of the inner components of React-mde. Classes defined in the *classes* prop
-follow the specification of [Jed Watson's classNames project](https://github.com/JedWatson/classnames).
+- **classes?: [Object](https://github.com/andrerpena/react-mde/blob/master/src/classes.ts)**: An object containing the following optional properties: _reactMde_, _toolbar_, _preview_, _textArea_ and _suggestionsDropdown_.
+  This allows for passing class names to each of the inner components of React-mde. Classes defined in the _classes_ prop
+  follow the specification of [Jed Watson's classNames project](https://github.com/JedWatson/classnames).
 - **commands?: Record<string, Command>**: An object with string properties representing keys, and a Command object as value for each key. These are custom commands. Commands are explained in more details below.
 - **toolbarCommands?: string[][]**: Array of array of strings, indicating which commands should be displayed. Each outer array is a group. Example: `[["code", "bold"], ["italic"]]`. The default list can be obtained with `import { getDefaultToolbarCommands } from 'react-mde', getDefaultToolbarCommands()`
 - **generateMarkdownPreview: (markdown: string) => Promise<string | ReactElement>;**: Function that should return a Promise to the generated HTML or a React element for the preview. If this `prop` is falsy, then no preview is going to be generated.
 - **getIcon?: (commandName: string) => React.ReactNode }** An optional set of button content options, including an `iconProvider` to allow custom icon rendering.
-options. It is recommended to [inspect the layouts source code](https://github.com/andrerpena/react-mde/tree/master/src/components-layout) to see what options can be passed to each
-while the documentation is not complete.
+  options. It is recommended to [inspect the layouts source code](https://github.com/andrerpena/react-mde/tree/master/src/components-layout) to see what options can be passed to each
+  while the documentation is not complete.
 - **loadingPreview**: What to display in the preview while it is loading. Value can be string, React Element or anything React can render.
 - **readOnly?: boolean**: Flag to render the editor in read-only mode.
 - [**l18n?**](src/types/L18n.ts): A localization option. It contains the strings `write`, `preview`, `uploadingImage` and `pasteDropSelect`.
@@ -105,13 +99,13 @@ while the documentation is not complete.
 - **minPreviewHeight?: number**: The minimum height of the preview.
 - **heightUnits?: string**: The height units, defaults to `px`.
 - **loadSuggestions?: (text: string, triggeredBy: string) => Promise<Suggestion[]>**: Function to load mention suggestions based on the
-given `text` and `triggeredBy` (character that triggered the suggestions). The result should be an array of `{preview: React.ReactNode, value: string}`.
-The `preview` is what is going to be displayed in the suggestions box. The `value` is what is going to be inserted in the `textarea` on click or enter.
+  given `text` and `triggeredBy` (character that triggered the suggestions). The result should be an array of `{preview: React.ReactNode, value: string}`.
+  The `preview` is what is going to be displayed in the suggestions box. The `value` is what is going to be inserted in the `textarea` on click or enter.
 - **suggestionTriggerCharacters (string[])**: Characters that will trigger mention suggestions to be loaded. This property is useless
-without `loadSuggestions`.
+  without `loadSuggestions`.
 - **suggestionsAutoplace?: boolean**: Try to move the suggestions popover around so that it fits in the viewport, defaults to false
 - **childProps?: [Object](https://github.com/andrerpena/react-mde/blob/master/src/child-props.ts#L16)**: An object containing props to be passed to `writeButton`, `previewButton`, `commandButtons` and `textArea`.
-- **paste: [PasteOptions](https://github.com/andrerpena/react-mde/blob/master/src/commands/command.ts)**: Options for file upload. 
+- **paste: [PasteOptions](https://github.com/andrerpena/react-mde/blob/master/src/commands/command.ts)**: Options for file upload.
 
 ## Styling
 
@@ -128,13 +122,13 @@ If you're using SASS, you can override these variables: https://github.com/andre
 ## XSS concerns
 
 React-mde does not automatically sanitize the HTML preview. If your using Showdown,
-this has been taken from [their documentation](https://github.com/showdownjs/showdown/wiki/Markdown's-XSS-Vulnerability-(and-how-to-mitigate-it)):
+this has been taken from [their documentation](<https://github.com/showdownjs/showdown/wiki/Markdown's-XSS-Vulnerability-(and-how-to-mitigate-it)>):
 
 > Cross-side scripting is a well known technique to gain access to private information of the users
-of a website. The attacker injects spurious HTML content (a script) on the web page which will read
-the user’s cookies and do something bad with it (like steal credentials). As a countermeasure,
- you should filter any suspicious content coming from user input. Showdown doesn’t include an
- XSS filter, so you must provide your own. But be careful in how you do it…
+> of a website. The attacker injects spurious HTML content (a script) on the web page which will read
+> the user’s cookies and do something bad with it (like steal credentials). As a countermeasure,
+> you should filter any suspicious content coming from user input. Showdown doesn’t include an
+> XSS filter, so you must provide your own. But be careful in how you do it…
 
 You might want to take a look at [showdown-xss-filter](https://github.com/VisionistInc/showdown-xss-filter).
 
@@ -156,6 +150,7 @@ React-mde is [MIT licensed](https://github.com/andrerpena/react-mde/blob/master/
 ## Third party
 
 In order to make React-mde zero deps, I've embedded two small libraries:
+
 - https://github.com/grassator/insert-text-at-cursor by https://twitter.com/d_kubyshkin
 - https://github.com/JedWatson/classnames by https://twitter.com/JedWatson
 
@@ -163,4 +158,4 @@ In order to make React-mde zero deps, I've embedded two small libraries:
 
 Made with :heart: by André Pena and [other awesome contributors](https://github.com/andrerpena/react-mde/graphs/contributors).
 
-[![twitter](https://img.shields.io/twitter/follow/andrerpena?style=social)](https://twitter.com/andrerpena)
+This repo is maintained by [@devfolioco](https://github.com/devfolioco)
