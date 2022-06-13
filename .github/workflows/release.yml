@@ -43,7 +43,7 @@ jobs:
         run: npm install --frozen-lockfile
 
       - name: 👷 Build
-        run: npm build
+        run: npm run build
 
       - name: 🚀 Publish release
         env:
