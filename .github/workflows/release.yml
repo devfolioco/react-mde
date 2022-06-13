@@ -4,6 +4,9 @@ on:
   workflow_dispatch:
   release:
     types: [published]
+  pull_request:
+    types:
+      - review_requested
 
 jobs:
   release:
