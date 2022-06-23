@@ -22,7 +22,7 @@ function dataTransferToArray(items: DataTransferItemList): Array<File> {
 function fileListToArray(list: FileList): Array<File> {
   const result = [];
   for (var i = 0; i < list.length; i++) {
-    result.push(list[0]);
+    result.push(list[i]);
   }
   return result;
 }
