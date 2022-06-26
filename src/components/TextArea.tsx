@@ -1,4 +1,5 @@
 import * as React from "react";
+import { debounce } from "lodash";
 import { classNames, ClassValue } from "../util/ClassNames";
 import {
   CaretCoordinates,
@@ -14,6 +15,8 @@ import {
   TextareaHTMLAttributes
 } from "react";
 import { ComponentSimilarTo } from "../util/type-utils";
+
+const DEFAULT_WAIT_TIME = 400;
 
 export interface MentionState {
   status: "active" | "inactive" | "loading";
@@ -45,6 +48,7 @@ export interface TextAreaProps {
   heightUnits?: string;
   suggestionTriggerCharacters?: string[];
   suggestionsAutoplace?: boolean;
+  debounceSuggestions?: number;
   loadSuggestions?: (
     text: string,
     triggeredBy: string
@@ -122,7 +126,9 @@ export class TextArea extends React.Component<TextAreaProps, TextAreaState> {
   handleBlur = () => {
     const { mention } = this.state;
     if (mention) {
-      this.setState({ mention: { status: "inactive", suggestions: [] } });
+      this.setState({
+        mention: { status: "inactive", suggestions: [] }
+      });
     }
   };
 
@@ -159,9 +165,14 @@ export class TextArea extends React.Component<TextAreaProps, TextAreaState> {
       });
   };
 
+  debouncedStartLoadingSuggestions = debounce(
+    this.startLoadingSuggestions,
+    this.props.debounceSuggestions ?? DEFAULT_WAIT_TIME
+  );
+
   loadEmptySuggestion = (target: HTMLTextAreaElement, key: string) => {
     const caret = getCaretCoordinates(target, key);
-    this.startLoadingSuggestions("");
+    this.debouncedStartLoadingSuggestions("");
     this.setState({
       mention: {
         status: "loading",
@@ -280,7 +291,7 @@ export class TextArea extends React.Component<TextAreaProps, TextAreaState> {
             this.getTextArea().selectionStart - mention.startPosition
           );
 
-          this.startLoadingSuggestions(searchText);
+          this.debouncedStartLoadingSuggestions(searchText);
           if (mention.status !== "loading") {
             this.setState({
               mention: {
@@ -334,7 +345,7 @@ export class TextArea extends React.Component<TextAreaProps, TextAreaState> {
           ) + key;
 
         // In this case, the mentions box was open but the user typed something else
-        this.startLoadingSuggestions(searchText);
+        this.debouncedStartLoadingSuggestions(searchText);
         if (mention.status !== "loading") {
           this.setState({
             mention: {
