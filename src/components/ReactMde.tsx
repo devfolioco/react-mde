@@ -44,6 +44,7 @@ export interface ReactMdeProps {
   disablePreview?: boolean;
   suggestionTriggerCharacters?: string[];
   suggestionsAutoplace?: boolean;
+  debounceSuggestions?: number;
   loadSuggestions?: (
     text: string,
     triggeredBy: string
@@ -232,6 +233,7 @@ export class ReactMde extends React.Component<ReactMdeProps, ReactMdeState> {
             classes={classes?.textArea}
             suggestionsDropdownClasses={classes?.suggestionsDropdown}
             suggestionsAutoplace={this.props.suggestionsAutoplace}
+            debounceSuggestions={this.props.debounceSuggestions}
             refObject={this.finalRefs.textarea}
             onChange={this.handleTextChange}
             onPaste={this.handlePaste}

@@ -1,5 +1,6 @@
 import * as React from "react";
 import ReactMde from "../src";
+import { debounce } from "lodash";
 import * as Showdown from "showdown";
 import { SaveImageHandler, Suggestion } from "../src/types";
 
@@ -60,7 +61,10 @@ export class App extends React.Component<{}, AppState> {
   };
 
   render() {
-    const save: SaveImageHandler = async function*(data: ArrayBuffer, file: Blob) {
+    const save: SaveImageHandler = async function*(
+      data: ArrayBuffer,
+      file: Blob
+    ) {
       // Promise that waits for "time" milliseconds
       const wait = function(time: number) {
         return new Promise<void>((a, r) => {
@@ -92,6 +96,7 @@ export class App extends React.Component<{}, AppState> {
             Promise.resolve(this.converter.makeHtml(markdown))
           }
           selectedTab={this.state.tab}
+          debounceSuggestions={600}
           loadSuggestions={this.loadSuggestions}
           suggestionTriggerCharacters={["@"]}
           suggestionsAutoplace={true}
