@@ -1,5 +1,5 @@
 import * as React from "react";
-import { debounce } from "lodash";
+import debounce from "lodash/debounce";
 import { classNames, ClassValue } from "../util/ClassNames";
 import {
   CaretCoordinates,
