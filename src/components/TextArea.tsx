@@ -1,5 +1,5 @@
 import * as React from "react";
-import debounce from "lodash/debounce";
+import debounce from "../util/debounce/index";
 import { classNames, ClassValue } from "../util/ClassNames";
 import {
   CaretCoordinates,
@@ -167,7 +167,8 @@ export class TextArea extends React.Component<TextAreaProps, TextAreaState> {
 
   debouncedStartLoadingSuggestions = debounce(
     this.startLoadingSuggestions,
-    this.props.debounceSuggestions ?? DEFAULT_WAIT_TIME
+    this.props.debounceSuggestions ?? DEFAULT_WAIT_TIME,
+    {}
   );
 
   loadEmptySuggestion = (target: HTMLTextAreaElement, key: string) => {
